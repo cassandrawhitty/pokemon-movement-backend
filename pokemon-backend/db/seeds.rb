@@ -15,4 +15,10 @@ Type.destroy_all
   Type.create(name: type["name"], url: type["url"])
 end
 
-
+@response["results"].each do |type|
+  @types_url = JSON.parse(RestClient.get(type["url"]))
+  
+  @types_url["pokemon"].each do |pokemon|
+    Pokemon.create(name: pokemon["pokemon"]["name"], url: pokemon["pokemon"]["url"], pokemon_type: type["name"])
+  end
+end

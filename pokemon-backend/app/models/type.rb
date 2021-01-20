@@ -1,4 +1,2 @@
 class Type < ApplicationRecord
-  
-
 end
