@@ -11,7 +11,6 @@ class TypesController < ApplicationController
 
   # GET /types/1
   def show
-    response = JSON.parse(RestClient.get("https://pokeapi.co/api/v2/type"))
     render json: @type
   end
 

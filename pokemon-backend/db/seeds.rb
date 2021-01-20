@@ -12,7 +12,7 @@ require 'pry'
 Type.destroy_all 
 
 @response["results"].each do |type|
-  Type.create(name: type["name"])
+  Type.create(name: type["name"], url: type["url"])
 end
 
 
