@@ -10,6 +10,7 @@ require 'pry'
 @response = JSON.parse(RestClient.get("https://pokeapi.co/api/v2/type"))
 
 Type.destroy_all 
+Pokemon.destory_all 
 
 @response["results"].each do |type|
   Type.create(name: type["name"], url: type["url"])
@@ -19,6 +20,7 @@ end
   @types_url = JSON.parse(RestClient.get(type["url"]))
   
   @types_url["pokemon"].each do |pokemon|
+    binding.pry
     Pokemon.create(name: pokemon["pokemon"]["name"], url: pokemon["pokemon"]["url"], pokemon_type: type["name"])
   end
 end
