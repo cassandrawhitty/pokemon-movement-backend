@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'rest-client'
+require 'pry'
+@response = JSON.parse(RestClient.get("https://pokeapi.co/api/v2/type"))
+
+Type.destroy_all 
+
+@response["results"].each do |type|
+  Type.create(name: type["name"])
+end
+
+
