@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_212941) do
+ActiveRecord::Schema.define(version: 2021_01_20_214141) do
+
+  create_table "moves", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.string "move_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name"

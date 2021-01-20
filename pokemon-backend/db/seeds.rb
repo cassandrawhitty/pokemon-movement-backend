@@ -11,6 +11,7 @@ require 'pry'
 
 Type.destroy_all 
 Pokemon.destroy_all 
+Move.destroy_all
 
 @response["results"].each do |type|
   Type.create(name: type["name"], url: type["url"])
@@ -21,5 +22,13 @@ end
   
   @types_url["pokemon"].each do |pokemon|
     Pokemon.create(name: pokemon["pokemon"]["name"], url: pokemon["pokemon"]["url"], pokemon_type: type["name"])
+  end
+end
+
+@response["results"].each do |type|
+  @types_url = JSON.parse(RestClient.get(type["url"]))
+  
+  @types_url["moves"].each do |move|
+    Move.create(name: move["name"], url: move["url"], move_type: type["name"])
   end
 end
